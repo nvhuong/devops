@@ -1,0 +1,32 @@
+FROM composer:2.1.11 AS build
+WORKDIR /app
+
+COPY composer.json .
+COPY composer.lock .
+RUN composer install --no-dev --no-scripts --ignore-platform-reqs
+
+COPY . .
+RUN composer dumpautoload --optimize
+
+FROM php:7.4.25-fpm
+WORKDIR /app
+
+RUN apt update && \
+    apt install -y \
+    libicu-dev=67.1-7 \
+    libgd-dev=2.3.0-2 \
+    libonig-dev=6.9.6-1.1 \
+    unzip=6.0-26 && \
+    apt purge -y --auto-remove
+
+RUN docker-php-ext-install \
+    exif \
+    gd \
+    intl \
+    mbstring \
+    mysqli \
+    opcache \
+    pdo_mysql \
+    sockets
+
+COPY --from=build /app /app
