@@ -1,0 +1,10 @@
+version: '3'
+services:
+  oracle18c:
+    image: ynraju4/oracle18c
+    container_name: oracle18c                                     
+    restart: unless-stopped                                              
+    volumes:                                                    
+      - "./oracle18c/data:/opt/oracle"
+    ports: 
+      - "1521:1521"

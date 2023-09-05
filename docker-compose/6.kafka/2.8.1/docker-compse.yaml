@@ -1,0 +1,45 @@
+version: '3'
+services:
+  zookepper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper                       
+    restart: unless-stopped                                  
+    volumes:                                        
+      - "/etc/localtime:/etc/localtime"
+    ports:                                           
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka:2.13-2.8.1
+    container_name: kafka                                   
+    restart: unless-stopped                                        
+    volumes:                                                 
+      - "/etc/localtime:/etc/localtime"
+    environment:                                                      
+      KAFKA_ADVERTISED_HOST_NAME: www.zhengqingya.com                 
+      KAFKA_ADVERTISED_PORT: 9092                                      
+      KAFKA_BROKER_ID: 0                                              
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://www.zhengqingya.com:9092 
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092                        
+      KAFKA_ZOOKEEPER_CONNECT: www.zhengqingya.com:2181                
+      KAFKA_CREATE_TOPICS: "hello_world"
+    ports:                              
+      - "9092:9092"
+    depends_on:                         
+      - zookepper
+
+
+  kafka-manager:
+    image: sheepkiller/kafka-manager
+    container_name: kafka-manager                            
+    restart: unless-stopped                                         
+    environment:                        
+      ZK_HOSTS: www.zhengqingya.com:2181  
+      APPLICATION_SECRET: zhengqing
+      KAFKA_MANAGER_AUTH_ENABLED: "true"  
+      KAFKA_MANAGER_USERNAME: admin       
+      KAFKA_MANAGER_PASSWORD: 123456      
+    ports:                              
+      - "9006:9000"
+    depends_on:                         
+      - kafka

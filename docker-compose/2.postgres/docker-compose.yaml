@@ -1,0 +1,15 @@
+version: '3'
+services:
+  postgresql:
+    image: postgres:14.5
+    container_name: postgresql                                                         
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      ALLOW_IP_RANGE: 0.0.0.0/0 
+    volumes:
+      - "./postgresql/data:/var/lib/postgresql/data"
+    ports:
+      - "5435:5432"

@@ -1,0 +1,42 @@
+version: '3'
+
+networks:
+  mysql:
+    driver: bridge
+
+services:
+  mysql-master:
+    image: mysql:5.7
+    container_name: mysql_master                                  
+    restart: unless-stopped                                      
+    volumes:                                                      
+      - "./mysql/master/my.cnf:/etc/mysql/my.cnf"
+      - "./mysql/master/data:/var/lib/mysql"
+      #      - "./mysql/master/conf.d:/etc/mysql/conf.d"
+      - "./mysql/master/log/mysql/error.log:/var/log/mysql/error.log"
+    environment:                        
+      MYSQL_ROOT_PASSWORD: root         
+      MYSQL_DATABASE: demo              
+    ports:                              
+      - "9306:3306"
+    networks:
+      - mysql
+
+  mysql-slave:
+    image: mysql:5.7
+    container_name: mysql_slave                                   
+    restart: unless-stopped                                       
+    volumes:                                                      
+      - "./mysql/slave/my.cnf:/etc/mysql/my.cnf"
+      - "./mysql/slave/data:/var/lib/mysql"
+      #      - "./mysql/slave/conf.d:/etc/mysql/conf.d"
+      - "./mysql/slave/log/mysql/error.log:/var/log/mysql/error.log"
+    environment:                        
+      MYSQL_ROOT_PASSWORD: root         
+      MYSQL_DATABASE: demo              
+    ports:                             
+      - "3307:3306"
+    depends_on:
+      - mysql-master
+    networks:
+      - mysql

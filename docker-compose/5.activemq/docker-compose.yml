@@ -1,0 +1,20 @@
+version: '3'
+services:
+  activemq:
+    image: webcenter/activemq   
+    container_name: activemq          
+    hostname: myActivemq                        
+    restart: unless-stopped   
+    ports:
+      - 61613:61613
+      - 61616:61616
+      - 8161:8161
+    volumes:  
+      - /etc/localtime:/etc/localtime:ro
+      - ./activemq/data/activemq:/data/activemq
+      - ./activemq/var/log/activemq:/var/log/activemq
+    environment:  
+      ACTIVEMQ_ADMIN_LOGIN: admin     
+      ACTIVEMQ_ADMIN_PASSWORD: admin   
+      ACTIVEMQ_CONFIG_MINMEMORY: 512
+      ACTIVEMQ_CONFIG_MAXMEMORY: 2048
