@@ -1,0 +1,13 @@
+version: '3'
+services:
+  redis:
+    image: reasonduan/redis-manager
+    container_name: redis-manager                                                             
+    restart: unless-stopped                                                                   
+    environment:                     
+      DATASOURCE_DATABASE: redis_manager
+      DATASOURCE_URL: jdbc:mysql://www.zhengqingya.com:3306/redis_manager?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT%2b8
+      DATASOURCE_USERNAME: root
+      DATASOURCE_PASSWORD: root
+    ports:                              
+      - "8182:8182"

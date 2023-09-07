@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  jira:
+    image: cptactionhank/atlassian-jira-software:8.1.0 
+    container_name: jira
+    restart: always
+    volumes:
+      - "./app/data:/var/atlassian/jira"
+      #- "./app/config:/opt/atlassian/jira"
+      - "./app/atlassian-agent.jar:/opt/atlassian/jira/atlassian-agent.jar"
+#      - "./app/mysql-connector-java-5.1.47.jar:/opt/atlassian/jira/lib/mysql-connector-java-5.1.47.jar"
+#      - "./app/mysql-connector-java-5.1.47.jar:/opt/atlassian/jira/atlassian-jira/WEB-INF/lib/mysql-connector-java-5.1.47.jar"
+#      - "./app/dbconfig.xml:/var/atlassian/jira/dbconfig.xml"
+    environment:
+      TZ: Asia/Ho_Chi_Minh
+      LANG: en_US.UTF-8
+      CATALINA_OPTS: "-javaagent:/opt/atlassian/jira/atlassian-agent.jar"
+    ports:
+      - "18080:8080"

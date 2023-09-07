@@ -1,0 +1,16 @@
+2023-08-21 17:13:17,750 INFO [Catalina-utility-1] [com.atlassian.confluence.lifecycle] contextInitialized Starting Confluence 7.9.3 [build 8505 based on commit hash f5e71ce5e7eab96b69c873705d53960b71f86fff] - synchrony version 4.0.0-master-85ceb9cf
+2023-08-21 17:13:20,830 WARN [Catalina-utility-1] [com.atlassian.config.ApplicationConfig] setApplicationHome Application home does not exist. Creating directory: /var/atlassian/confluence/shared-home
+2023-08-21 17:13:20,834 INFO [Catalina-utility-1] [atlassian.confluence.cluster.DefaultClusterConfigurationHelper] lambda$saveSetupConfigIntoSharedHome$9 Writing setup configuration into shared home...
+2023-08-21 17:13:20,909 INFO [Catalina-utility-1] [atlassian.confluence.cluster.DefaultClusterConfigurationHelper] lambda$saveSetupConfigIntoSharedHome$9 Finished writing setup configuration into shared home
+2023-08-21 17:13:23,148 INFO [Catalina-utility-1] [atlassian.plugin.manager.DefaultPluginManager] lambda$earlyStartup$3 Plugin system earlyStartup begun
+2023-08-21 17:13:26,058 WARN [FelixStartLevel] [extender.internal.support.ExtenderConfiguration] addDefaultDependencyFactories Gemini Blueprint extensions bundle not present, annotation processing disabled.
+2023-08-21 17:13:27,786 INFO [Catalina-utility-1] [atlassian.plugin.manager.DefaultPluginManager] logTime Plugin system earlyStartup ended
+2023-08-21 17:13:27,789 INFO [Catalina-utility-1] [atlassian.plugin.manager.DefaultPluginManager] lambda$lateStartup$4 Plugin system lateStartup begun
+2023-08-21 17:13:29,705 INFO [Catalina-utility-1] [atlassian.plugin.manager.DefaultPluginManager] logTime Plugin system lateStartup ended
+2023-08-21 17:13:30,227 INFO [Catalina-utility-1] [com.atlassian.confluence.lifecycle] init Confluence is ready to serve
+2023-08-21 17:14:07,043 FATAL [Catalina-utility-3] [atlassian.spring.container.SpringContainerContext] getComponent Spring Application context has not been set
+2023-08-21 17:14:07,043 WARN [Catalina-utility-3] [atlassian.confluence.plugin.PluginFrameworkContextListener] contextDestroyed Failed to shut down plugin system during ServletContext shutdown: Spring Application context has not been set
+2023-08-21 17:14:07,068 INFO [Catalina-utility-3] [com.atlassian.confluence.lifecycle] contextDestroyed Stopping Confluence
+2023-08-21 17:14:07,070 INFO [Catalina-utility-3] [atlassian.plugin.manager.DefaultPluginManager] lambda$shutdown$5 Preparing to shut down the plugin system
+2023-08-21 17:14:07,071 INFO [Catalina-utility-3] [atlassian.plugin.manager.DefaultPluginManager] lambda$shutdown$5 Shutting down the plugin system
+2023-08-21 17:14:07,136 WARN [FelixStartLevel] [plugin.osgi.factory.OsgiBundlePlugin] disableInternal Cannot disable Bundle 'com.atlassian.platform.spring-velocity-support-0.0.7', not ACTIVE
