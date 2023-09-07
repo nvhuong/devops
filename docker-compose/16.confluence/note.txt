@@ -1,0 +1,4 @@
+Cap quyen khi co loi thu muc: 
+chmod -R 777 ./app
+Lay token:
+java -jar ./app/atlassian-agent.jar -d -m test@test.com -n BAT -p jira -o http://127.0.0.1 -s {ten_server_id}
